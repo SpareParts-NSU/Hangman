@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menu.gd" type="Script" id=1]
+[ext_resource path="res://button.tscn" type="PackedScene" id=2]
+
+[node name="menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="v_box_container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 360.0
+margin_top = 690.0
+margin_right = -360.0
+margin_bottom = -690.0
+
+[node name="start" parent="v_box_container" instance=ExtResource( 2 )]
+margin_top = 36.0
+margin_right = 360.0
+margin_bottom = 141.0
+size_flags_vertical = 6
+text = "Start"
+
+[node name="options" parent="v_box_container" instance=ExtResource( 2 )]
+margin_top = 217.0
+margin_right = 360.0
+margin_bottom = 322.0
+size_flags_vertical = 6
+text = "Options"
+
+[node name="quit" parent="v_box_container" instance=ExtResource( 2 )]
+margin_top = 398.0
+margin_right = 360.0
+margin_bottom = 503.0
+size_flags_vertical = 6
+text = "Quit"
+
+[connection signal="pressed" from="v_box_container/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="v_box_container/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="v_box_container/quit" to="." method="_on_quit_pressed"]
