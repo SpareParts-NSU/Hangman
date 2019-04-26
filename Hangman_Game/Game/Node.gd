@@ -7,7 +7,7 @@ func _init():
     var err = 0
     var http = HTTPClient.new() # Create the Client.
 
-    err = http.connect_to_host("http://192.168.0.112", 8000) # Connect to host/port.
+    err = http.connect_to_host("http://192.168.0.102", 8000) # Connect to host/port.
     assert(err == OK) # Make sure connection was OK.
 
     # Wait until resolved and connected.
@@ -21,7 +21,7 @@ func _init():
     # Some headers
     var headers = [
         "User-Agent: Pirulo/1.0 (Godot)",
-        "Accept: */*"
+        "Accept: */*"z
     ]
 
     err = http.request(HTTPClient.METHOD_GET, "/ChangeLog-5.php", headers) # Request a page from the site (this one was chunked..)
