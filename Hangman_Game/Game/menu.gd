@@ -1,7 +1,6 @@
 extends Control
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,8 +18,8 @@ func _on_options_pressed():
 	#pass # Replace with function body.
 
 
-func _on_start_pressed():
-	var error = get_tree().change_scene('main.tscn')
+func _on_singleplayer_pressed():
+	var error = get_tree().change_scene('single_player.tscn')
 	if error != OK:
 		print('Error code: {error_code}'.format({'error_code':error}))
 	#pass # Replace with function body.

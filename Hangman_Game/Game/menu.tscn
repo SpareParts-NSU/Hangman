@@ -19,27 +19,33 @@ margin_top = 690.0
 margin_right = -360.0
 margin_bottom = -690.0
 
-[node name="start" parent="v_box_container" instance=ExtResource( 2 )]
-margin_top = 36.0
+[node name="singleplayer" parent="v_box_container" instance=ExtResource( 2 )]
+margin_top = 18.0
 margin_right = 360.0
-margin_bottom = 141.0
+margin_bottom = 123.0
 size_flags_vertical = 6
-text = "Start"
+text = "Uno"
+
+[node name="multiplayer" parent="v_box_container" instance=ExtResource( 2 )]
+margin_top = 145.0
+margin_right = 360.0
+margin_bottom = 250.0
+text = "Dos"
 
 [node name="options" parent="v_box_container" instance=ExtResource( 2 )]
-margin_top = 217.0
+margin_top = 272.0
 margin_right = 360.0
-margin_bottom = 322.0
+margin_bottom = 377.0
 size_flags_vertical = 6
 text = "Options"
 
 [node name="quit" parent="v_box_container" instance=ExtResource( 2 )]
-margin_top = 398.0
+margin_top = 417.0
 margin_right = 360.0
-margin_bottom = 503.0
+margin_bottom = 522.0
 size_flags_vertical = 6
 text = "Quit"
 
-[connection signal="pressed" from="v_box_container/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="v_box_container/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="v_box_container/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="v_box_container/quit" to="." method="_on_quit_pressed"]
