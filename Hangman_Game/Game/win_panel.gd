@@ -1,4 +1,4 @@
-extends Node2D
+extends PanelContainer
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -11,3 +11,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func _input(event):
+	if event is InputEventMouseButton:
+		var error = get_tree().change_scene('menu.tscn')
+		if error != OK:
+			print('Error code: {error_code}'.format({'error_code':error}))
