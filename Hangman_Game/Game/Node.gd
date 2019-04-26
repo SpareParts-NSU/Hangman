@@ -7,7 +7,7 @@ func _init():
     var err = 0
     var http = HTTPClient.new() # Create the Client.
 
-    err = http.connect_to_host("http://192.168.0.102", 8000) # Connect to host/port.
+    err = http.connect_to_host("http://192.168.0.112", 8000) # Connect to host/port.
     assert(err == OK) # Make sure connection was OK.
 
     # Wait until resolved and connected.
