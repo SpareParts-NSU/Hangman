@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Achievement
 
 class user_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'alias', 'email', 'password')
+        fields = ('avatar', 'alias', 'email', 'password')
+
+class achievement_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Achievement
+        fields = ('id', 'alias')
 
