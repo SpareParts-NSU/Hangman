@@ -16,5 +16,10 @@ func _ready():
 func _pressed():
 	print(self.text)
 	disabled = true
-	get_parent().get_parent().get_node('letter_container').get_node(text).text = text
-	get_parent().get_parent().word = get_parent().get_parent().word.replace(text,"")
+	if not text in get_parent().get_parent().word:
+		get_parent().get_parent().get_node('hangman').show_organ()
+	else:
+		var word = get_parent().get_parent().word
+		get_parent().get_parent().word = word.replace(text,"")
+		if word == '':
+			get_parent().get_parent().win()
