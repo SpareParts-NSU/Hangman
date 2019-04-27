@@ -6,7 +6,8 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+#	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -15,4 +16,10 @@ func _ready():
 func _pressed():
 	print(self.text)
 	disabled = true
-	get_parent().get_parent().word = get_parent().get_parent().word.replace(text,"")
+	if not text in get_parent().get_parent().word:
+		get_parent().get_parent().get_node('hangman').show_organ()
+	else:
+		var word = get_parent().get_parent().word
+		get_parent().get_parent().word = word.replace(text,"")
+		if word == '':
+			get_parent().get_parent().win()
