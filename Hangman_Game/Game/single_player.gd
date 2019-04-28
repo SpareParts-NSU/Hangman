@@ -17,13 +17,13 @@ func _ready():
 	get_word()
 	
 	var grid = get_node("letter_container")
-	grid.columns = 3
+	grid.columns = word.length()
 	create_letter_spaces(grid, word)
 	
 	
 	grid = get_node("button_container")
 	grid.columns = word.length()/2
-	create_buttons(grid,word)
+	create_buttons(grid, word)
 
 
 func _process(delta):
