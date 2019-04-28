@@ -45,7 +45,7 @@ func get_data(destination):
 
 		headers = http.get_response_headers_as_dictionary() # Get response headers.
 		print("code: ", http.get_response_code()) # Show response code.
-		if http.get_response_code() != http.OK:
+		if http.get_response_code() != http.RESPONSE_OK:
 			return null
 		print("**headers:\\n", headers) # Show headers.
 

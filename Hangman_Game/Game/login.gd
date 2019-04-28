@@ -87,7 +87,7 @@ func _on_login_pressed():
 		$warning.hide()
 		return
 	
-	
+	login(username, password)
 	
 #	pass # Replace with function body.
 

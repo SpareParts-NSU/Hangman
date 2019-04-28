@@ -4,8 +4,8 @@ extends Node
 # var a = 2
 # var b = "text"
 
-const ADDRESS = "192.168.0.104"
-const PORT = 8080
+const ADDRESS = "127.0.0.1"
+const PORT = 8000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
