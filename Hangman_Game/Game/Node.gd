@@ -21,7 +21,7 @@ func _init():
     # Some headers
     var headers = [
         "User-Agent: Pirulo/1.0 (Godot)",
-        "Accept: */*"z
+        "Accept: */*"
     ]
 
     err = http.request(HTTPClient.METHOD_GET, "/ChangeLog-5.php", headers) # Request a page from the site (this one was chunked..)
