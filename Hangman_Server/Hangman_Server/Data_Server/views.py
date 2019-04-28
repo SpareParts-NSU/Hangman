@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .models import User, Achievement, Match, Game_Data
 from .serializers import user_Serializer, achievement_Serializer, match_Serializer, game_Serializer
 from django.http import HttpResponse, HttpResponseNotFound
+from .randWordGen import gen
 
 
 class user_View(viewsets.ModelViewSet):
@@ -23,4 +24,5 @@ class game_View(viewsets.ModelViewSet):
 
 def post_Words(request):
     Game_Data_instance = Game_Data.objects.create(gameID = '1')
-    return HttpResponse('<h1>Page was found</h1>')
+    word = gen(1)
+    return HttpResponse(word)
