@@ -19,8 +19,12 @@ class Achievement(models.Model):
         return self.alias
 
 class Match(models.Model):
+    #gameID = models.IntegerField(blank = True, default = None)
     Player_1 = models.ForeignKey('User', on_delete = models.CASCADE, related_name='Player_1')
     Player_2 = models.ForeignKey('User', on_delete = models.CASCADE, related_name='Player_2')
     level = models.CharField(max_length = 8, default = None)
     seed = models.IntegerField(blank = True)
     Winner = models.ForeignKey('User', on_delete = models.CASCADE, related_name='Winner')
+
+class Game_Data(models.Model):
+    gameID = models.IntegerField(blank = True, default = None)    
