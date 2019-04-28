@@ -10,5 +10,6 @@ router.register('Game', views.game_View)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('gamestart/', views.post_Words)
+    path('matchID/', views.get_match_id),
+    path('getword/', views.get_word)
 ]
