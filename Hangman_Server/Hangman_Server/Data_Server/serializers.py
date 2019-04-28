@@ -14,9 +14,9 @@ class achievement_Serializer(serializers.ModelSerializer):
 class match_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Match
-        fields = ('gameID', 'Player_1', 'Player_2', 'level', 'seed', 'Winner')
+        fields = ('Player_1', 'Player_2', 'level', 'seed', 'Winner')
 
 class game_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Game_Data
-        fields = ('id', 'gameID')
+        fields = ('id', 'gameID', 'word')

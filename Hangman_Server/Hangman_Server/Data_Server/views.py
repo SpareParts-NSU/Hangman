@@ -23,6 +23,6 @@ class game_View(viewsets.ModelViewSet):
     serializer_class = game_Serializer 
 
 def post_Words(request):
-    Game_Data_instance = Game_Data.objects.create(gameID = '1')
     word = gen(1)
+    Game_Data_instance = Game_Data.objects.create(gameID = '1', word = word)
     return HttpResponse(word)

@@ -27,4 +27,5 @@ class Match(models.Model):
     Winner = models.ForeignKey('User', on_delete = models.CASCADE, related_name='Winner')
 
 class Game_Data(models.Model):
-    gameID = models.IntegerField(blank = True, default = None)    
+    gameID = models.IntegerField(blank = True, default = None)
+    word = models.CharField(max_length = 50, blank = True)
