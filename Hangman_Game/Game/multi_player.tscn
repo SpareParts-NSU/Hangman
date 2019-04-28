@@ -1,6 +1,37 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://multi_player.gd" type="Script" id=1]
+[ext_resource path="res://hangman.tscn" type="PackedScene" id=2]
 
 [node name="multi_player" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="letter_container" type="GridContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -824.0
+margin_bottom = -615.0
+columns = 3
+
+[node name="button_container" type="GridContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -567.0
+margin_bottom = 2.0
+columns = 3
+
+[node name="hangman" parent="." instance=ExtResource( 2 )]
+position = Vector2( 354.641, 193.6 )
+scale = Vector2( 0.610213, 0.610213 )
+
+[node name="me" parent="." instance=ExtResource( 2 )]
+position = Vector2( 898.042, 97.2399 )
+scale = Vector2( 0.278074, 0.278074 )
 

@@ -4,7 +4,7 @@ class User(models.Model):
     alias = models.CharField(unique = True, primary_key = True, max_length = 20)
     avatar = models.ImageField(upload_to = 'user_Images/', blank = True, null = True)
     email = models.EmailField(blank = False, unique = True)
-    password = models.CharField(max_length = 50)
+    password = models.CharField(max_length = 64)
 
     def __str__(self):
         return self.alias
