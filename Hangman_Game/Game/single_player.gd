@@ -17,7 +17,7 @@ func _ready():
 	get_word()
 	
 	var grid = get_node("letter_container")
-	grid.columns = word.length()
+	grid.columns = 3
 	create_letter_spaces(grid, word)
 	
 	

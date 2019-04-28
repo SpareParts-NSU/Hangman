@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import User, Achievement, Match
-from .serializers import user_Serializer, achievement_Serializer, match_Serializer
+from .models import User, Achievement, Match, Game_Data
+from .serializers import user_Serializer, achievement_Serializer, match_Serializer, game_Serializer
+from django.http import HttpResponse, HttpResponseNotFound
+from .randWordGen import gen
+
 
 class user_View(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -15,3 +18,11 @@ class match_View(viewsets.ModelViewSet):
     queryset = Match.objects.all()
     serializer_class = match_Serializer
 
+class game_View(viewsets.ModelViewSet):
+    queryset = Game_Data.objects.all()
+    serializer_class = game_Serializer 
+
+def post_Words(request):
+    word = gen(1)
+    Game_Data_instance = Game_Data.objects.create(gameID = '1', word = word)
+    return HttpResponse(word)
