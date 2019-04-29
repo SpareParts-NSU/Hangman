@@ -4,8 +4,8 @@ extends Node
 # var a = 2
 # var b = "text"
 
-const ADDRESS = "192.168.0.112"
-const PORT = 8080
+const ADDRESS = "192.168.43.27"
+const PORT = 8000
 var username = ''
 
 # Called when the node enters the scene tree for the first time.
