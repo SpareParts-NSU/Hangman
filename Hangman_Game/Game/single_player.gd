@@ -23,6 +23,8 @@ func _ready():
 	grid = get_node("button_container")
 	grid.columns = word.length()/2
 	create_buttons(grid, word)
+	
+	
 
 
 func _process(delta):

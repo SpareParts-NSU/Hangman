@@ -6,6 +6,8 @@ extends Node2D
 
 var hits = 0
 var child_count = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$head.hide()
