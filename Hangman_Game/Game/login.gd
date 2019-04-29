@@ -13,6 +13,7 @@ const POST_DATA = preload('res://post_data.tscn')
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$warning.hide()
+	global.username = ''
 	var user = load_data(file_path)
 	if user != null:
 		play()
@@ -101,7 +102,7 @@ func signup(username, password, email):
 	
 	post_data.http_connect()
 	
-	var data = post_data.get_data("/user/", body)
+	var data = post_data.post_data("/user/", body)
 	
 	return data
 
@@ -132,6 +133,7 @@ func login(username, password):
 
 
 func play():
+	global.username = file_data['username']
 	var error = get_tree().change_scene('menu.tscn')
 	if error != OK:
 		print('Error code: {error_code}'.format({'error_code':error}))

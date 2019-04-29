@@ -29,10 +29,10 @@ func http_connect():
 
 
 
-func post_data(destination, body):
+func put_data(destination, body):
 	
 	var headers = ["Content-Type: application/json", "Accept: */*"]
-	var err = http.request(HTTPClient.METHOD_POST, destination, headers, body) # Request a page from the site (this one was chunked..)
+	var err = http.request(HTTPClient.METHOD_PUT, destination, headers, body) # Request a page from the site (this one was chunked..)
 	assert(err == OK) # Make sure all is OK.
 
 	while http.get_status() == HTTPClient.STATUS_REQUESTING:
@@ -55,8 +55,8 @@ func post_data(destination, body):
 
 		headers = http.get_response_headers_as_dictionary() # Get response headers.
 		print("code: ", http.get_response_code()) # Show response code.
-		if http.get_response_code() != http.RESPONSE_CREATED:
-			return null
+#		if http.get_response_code() != http.RESPONSE_CREATED:
+#			return null
 		print("**headers:\\n", headers) # Show headers.
 
         # Getting the HTTP Body

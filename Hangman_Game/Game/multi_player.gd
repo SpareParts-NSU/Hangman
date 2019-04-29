@@ -8,10 +8,13 @@ const BUTTON_SCENE = preload("res://button.tscn")
 const BUTTON_SCRIPT = preload("res://text_button.gd")
 
 const GET_DATA = preload('res://get_data.tscn')
+const PUT_DATA = preload('res://put_data.tscn')
 
 var gameID = null
+var game_state = null
 
 var get_data_instance = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +28,10 @@ func _ready():
 	create_letter_spaces(grid, word)
 	
 	
+	while(game_state != true):
+		get_game_state()
+	
+	
 	grid = get_node("button_container")
 	grid.columns = word.length()/2
 	create_buttons(grid, word)
@@ -33,7 +40,12 @@ func _ready():
 func _process(delta):
 	if word == '':
 		win()
+	pass
 
+
+
+func check_win():
+	return(parse_json(get_data_instance.get_data('/Game/' + gameID + '/'))['Winner'])
 
 func get_game_ID():
 	get_data_instance = GET_DATA.instance()
@@ -41,8 +53,15 @@ func get_game_ID():
 	gameID = get_data_instance.get_data('/matchID/')
 
 
+func get_game_state():
+	game_state = parse_json(get_data_instance.get_data('/Game/' + gameID + '/'))['gameStart']
+	print(game_state)
+
+
 func get_word():
-	word = parse_json(get_data_instance.get_data('/Game/' + gameID + "/"))['word']
+	var data = parse_json(get_data_instance.get_data('/Game/' + gameID + "/"))
+	print(data)
+	word = data['word']
 	word = clean_word(word)
 	word = word.to_upper()
 
@@ -94,6 +113,12 @@ func remove_duplicate_letters(word):
 
 
 func win():
+	
+#	var put_data = PUT_DATA.instance()
+#	put_data.http_connect()
+#	var body = '{"Winner": ' + global.username + '}'
+#	put_data.put_data("/Game/" + gameID + '/', body)
+	
 	yield(get_tree().create_timer(0.3), "timeout")
 	var error = get_tree().change_scene('win_panel.tscn')
 	if error != OK:
