@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import User, Achievement, Match, Game_Data
-from .serializers import user_Serializer, achievement_Serializer, match_Serializer, game_Serializer
+from .models import User, Achievement, Match, Game_Data, Leader_Board
+from .serializers import user_Serializer, achievement_Serializer, match_Serializer, game_Serializer, leaderboard_Serializer
 from django.http import HttpResponse, HttpResponseNotFound
 from .randWordGen import gen
 
@@ -23,6 +23,10 @@ class game_View(viewsets.ModelViewSet):
     queryset = Game_Data.objects.all()
     serializer_class = game_Serializer 
 
+class leaderboard_View(viewsets.ModelViewSet):
+    queryset = Leader_Board.objects.all()
+    serializer_class = leaderboard_Serializer
+
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -35,13 +39,14 @@ def get_client_ip(request):
 def get_match_id(request):
     global count
     print (get_client_ip(request))
-    word = gen(1)
     global Game_Data_instance
     if (count == 0):
-        Game_Data_instance = Game_Data.objects.create(word = word)
+        word = gen(1)
+        Game_Data_instance = Game_Data.objects.create(word = word, p1_ip = get_client_ip(request))
         count += 1
         return HttpResponse(Game_Data_instance.id)
     else :
+        Game_Data.objects.update(p2_ip = get_client_ip(request), gameStart = True)
         count = 0
         return HttpResponse(Game_Data_instance.id)
 

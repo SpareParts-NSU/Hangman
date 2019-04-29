@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Achievement, Match, Game_Data
+from .models import User, Achievement, Match, Game_Data, Leader_Board
 
 class user_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -19,4 +19,9 @@ class match_Serializer(serializers.ModelSerializer):
 class game_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Game_Data
-        fields = ('id', 'word')
+        fields = ('id', 'hit_p1', 'hit_p2', 'word', 'gameStart', 'Winner')
+
+class leaderboard_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leader_Board
+        fields = ('id', 'player', 'achievement')
