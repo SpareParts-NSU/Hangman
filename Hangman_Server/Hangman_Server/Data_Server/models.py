@@ -29,3 +29,4 @@ class Match(models.Model):
 class Game_Data(models.Model):
     #gameID = models.IntegerField(blank = True)
     word = models.CharField(max_length = 50, blank = True)
+    hit = models.IntegerField(default = 0, blank = True)
