@@ -9,9 +9,14 @@ const BUTTON_SCRIPT = preload("res://text_button.gd")
 
 const GET_DATA = preload('res://get_data.tscn')
 
+var gameID = null
+
+var get_data_instance = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	get_game_ID()
 	
 	get_word()
 	
@@ -23,8 +28,6 @@ func _ready():
 	grid = get_node("button_container")
 	grid.columns = word.length()/2
 	create_buttons(grid, word)
-	
-	
 
 
 func _process(delta):
@@ -32,11 +35,22 @@ func _process(delta):
 		win()
 
 
+func get_game_ID():
+	get_data_instance = GET_DATA.instance()
+	get_data_instance.http_connect()
+	gameID = get_data_instance.get_data('/matchID/')
+
+
 func get_word():
-	var get_data = GET_DATA.instance()
-	get_data.http_connect()
-	word = get_data.get_data('/getword/')
+	word = parse_json(get_data_instance.get_data('/Game/' + gameID + "/"))['word']
+	word = clean_word(word)
 	word = word.to_upper()
+
+
+func clean_word(word):
+	word.erase(word.length() - 2, 2)
+	word.erase(0,2)
+	return word
 
 
 func create_letter_spaces(grid, word):

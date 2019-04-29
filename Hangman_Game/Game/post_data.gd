@@ -4,12 +4,12 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+var http = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var body = {"avatar" : null, "alias" : "Yo's!", "email" : "yo's@gamil.com", "password" : "yo's"}
-	body = to_json(body)
-	get_data("192.168.0.112", 8000, "/user/", body)
-	#pass # Replace with function body.
+	
+	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -19,16 +19,19 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func get_data(host, port, destination, body):
-	var http = HTTPClient.new()
-	print(http.connect_to_host(host, port))
-	print(http.get_status())
-	var headers = ["Content-Type: application/json", "Accept: */*"]
+
+func http_connect():
+	http = HTTPClient.new()
+	print(http.connect_to_host(global.ADDRESS, global.PORT))
 	while(http.get_status() == HTTPClient.STATUS_CONNECTING):
 		http.poll()
 		print(http.get_status())
 
 
+
+func get_data(destination, body):
+	
+	var headers = ["Content-Type: application/json", "Accept: */*"]
 	var err = http.request(HTTPClient.METHOD_POST, destination, headers, body) # Request a page from the site (this one was chunked..)
 	assert(err == OK) # Make sure all is OK.
 
@@ -52,6 +55,8 @@ func get_data(host, port, destination, body):
 
 		headers = http.get_response_headers_as_dictionary() # Get response headers.
 		print("code: ", http.get_response_code()) # Show response code.
+		if http.get_response_code() != http.RESPONSE_CREATED:
+			return null
 		print("**headers:\\n", headers) # Show headers.
 
         # Getting the HTTP Body

@@ -3,7 +3,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var http = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,16 +12,16 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func get_data(host, port, destination):
-	var http = HTTPClient.new()
-	print(http.connect_to_host(host, port))
+func http_connect():
+	http = HTTPClient.new()
+	print(http.connect_to_host(global.ADDRESS, global.PORT))
 	print(http.get_status())
-	var headers = ["Accept: */*"]
 	while(http.get_status() == HTTPClient.STATUS_CONNECTING):
 		http.poll()
 		print(http.get_status())
 
-
+func get_data(destination):
+	var headers = ["Accept: */*"]
 	var err = http.request(HTTPClient.METHOD_GET, destination, headers) # Request a page from the site (this one was chunked..)
 	assert(err == OK) # Make sure all is OK.
 
@@ -45,6 +45,8 @@ func get_data(host, port, destination):
 
 		headers = http.get_response_headers_as_dictionary() # Get response headers.
 		print("code: ", http.get_response_code()) # Show response code.
+		if http.get_response_code() != http.RESPONSE_OK:
+			return null
 		print("**headers:\\n", headers) # Show headers.
 
         # Getting the HTTP Body
@@ -72,7 +74,6 @@ func get_data(host, port, destination):
 				rb = rb + chunk # Append to read buffer.
 
         # Done!
-		http.close()
 		
 		print("bytes got: ", rb.size())
 		var text = rb.get_string_from_ascii()
