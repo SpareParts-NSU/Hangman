@@ -45,10 +45,10 @@ func _on_login_pressed():
 #	pass # Replace with function body.
 
 func load_data(path):
-    var f = File.new()
-    if f.file_exists(path):
-        f.open(path, File.READ)
-        var data = f.get_var()
-        f.close()
-        return data
-    return null
+	var f = File.new()
+	if f.file_exists(path):
+		f.open(path, File.READ)
+		var data = f.get_var()
+		f.close()
+		return data
+	return null

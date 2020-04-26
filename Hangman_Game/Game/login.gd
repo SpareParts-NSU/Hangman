@@ -139,16 +139,16 @@ func play():
 		print('Error code: {error_code}'.format({'error_code':error}))
 
 func save_data(path, data):
-    var f = File.new()
-    f.open(path, File.WRITE)
-    f.store_var(data)
-    f.close()
+	var f = File.new()
+	f.open(path, File.WRITE)
+	f.store_var(data)
+	f.close()
 
 func load_data(path):
-    var f = File.new()
-    if f.file_exists(path):
-        f.open(path, File.READ)
-        var data = f.get_var()
-        f.close()
-        return data
-    return null
+	var f = File.new()
+	if f.file_exists(path):
+		f.open(path, File.READ)
+		var data = f.get_var()
+		f.close()
+		return data
+	return null

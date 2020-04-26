@@ -30,4 +30,3 @@ columns = 3
 [node name="hangman" parent="." instance=ExtResource( 2 )]
 position = Vector2( 354.641, 183.04 )
 scale = Vector2( 0.610213, 0.610213 )
-

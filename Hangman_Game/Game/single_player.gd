@@ -9,6 +9,8 @@ const BUTTON_SCRIPT = preload("res://text_button.gd")
 
 const GET_DATA = preload('res://get_data.tscn')
 
+const WORD_LIST = preload("res://words_list.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,10 +35,14 @@ func _process(delta):
 
 
 func get_word():
-	var get_data = GET_DATA.instance()
-	get_data.http_connect()
-	word = get_data.get_data('/getword/')
-	word = word.to_upper()
+#	var get_data = GET_DATA.instance()
+#	get_data.http_connect()
+#	word = get_data.get_data('/getword/')
+#	word = word.to_upper()
+	var word_list = WORD_LIST.instance().text
+	randomize()
+	word = word_list[randi() % len(word_list)]
+
 
 
 func create_letter_spaces(grid, word):
